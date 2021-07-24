@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv('.env')
+
 TOKEN = os.getenv("TOKEN_BOT")
 CHAT = os.getenv("CHAT_ID")
 
