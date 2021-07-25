@@ -55,7 +55,6 @@ def addExercicios(update, context):
 def mandarPeriodicamente(update, context):
     global guardarDia
     global quandoMandar
-    #print("Felps pirocudo\n")
 
     if guardarDia == quandoMandar:
         data = str(datetime.datetime.now().today()).split(" ")[0]
