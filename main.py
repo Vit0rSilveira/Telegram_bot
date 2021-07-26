@@ -56,13 +56,15 @@ def mandarPeriodicamente(update, context):
     global guardarDia
     global quandoMandar
 
+    print(f"Guardar dia: {guardarDia}, Quando mandar: {quandoMandar}")
+    
     if guardarDia == quandoMandar:
         data = str(datetime.datetime.now().today()).split(" ")[0]
         guardarDia = int(data.split("-")[2])
 
-        quandoMandar = guardarDia + 1
-        if quandoMandar > 30:
-            quandoMandar -= 30
+        print("Acabei de enviar no grupo")
+
+        quandoMandar = (guardarDia + 1) % 30
 
         mensagem = dontpad.read("provasBCC021")
         context.bot.sendMessage(chat_id = CHAT, text = mensagem, disable_notification = True)
