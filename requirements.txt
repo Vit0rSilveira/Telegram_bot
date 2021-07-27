@@ -2,7 +2,6 @@ appdirs==1.4.3
 APScheduler==3.6.3
 autopep8==1.5.7
 blinker==1.4
-Brlapi==0.7.0
 cachetools==4.2.2
 certifi==2019.11.28
 chardet==3.0.4
