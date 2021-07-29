@@ -52,29 +52,6 @@ def addExercicios(update, context):
         mensagem = "Para editar clique [aqui](http://dontpad.com/exerciciosBCC021)"
         context.bot.sendMessage(chat_id = chatId, text = mensagem, parse_mode = "MarkdownV2")
 
-def mandarPeriodicamente(update, context):
-    global guardarDia
-    global quandoMandar
-
-    print(f"Guardar dia: {guardarDia}, Quando mandar: {quandoMandar}")
-    
-    if guardarDia == quandoMandar:
-        data = str(datetime.datetime.now().today()).split(" ")[0]
-        guardarDia = int(data.split("-")[2])
-
-        print("Acabei de enviar no grupo")
-
-        quandoMandar = (guardarDia + 1) % 30
-
-        mensagem = dontpad.read("provasBCC021")
-        context.bot.sendMessage(chat_id = CHAT, text = mensagem, disable_notification = True)
-
-        mensagem = dontpad.read("trabalhosBCC021")
-        context.bot.sendMessage(chat_id = CHAT, text = mensagem, disable_notification = True)
-
-        mensagem = dontpad.read("exerciciosBCC021")
-        context.bot.sendMessage(chat_id = CHAT, text = mensagem, disable_notification = True)
-
 
 def main():
     logger = logging.getLogger(__name__)
@@ -89,7 +66,6 @@ def main():
     dp.add_handler(CommandHandler("provas", addProvas))
     dp.add_handler(CommandHandler("trabalhos", addTrabalhos))
     dp.add_handler(CommandHandler("runcodes", addExercicios))
-    dp.add_handler(MessageHandler(Filters.text, mandarPeriodicamente))
 
     updater.start_polling()
     logging.info("=== Bot running! ===")
