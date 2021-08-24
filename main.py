@@ -20,16 +20,28 @@ Digite /trabalhos para ver as datas dos trabalhos.
 Digite /runCodes para ver a data de entrega do run codes"""
     update.message.reply_text(s)
 
+
+def informacaoAulas(update, context):
+    messageId = update.message.message_id
+    chatId = update.message.chat_id
+    mensagem = dontpad.read("informacaoAulasBCC021")
+    context.bot.sendMessage(chat_id = chatId, text = mensagem, reply_to_message_id = messageId)
+
+    if chatId == int(CHAT):
+        mensagem = "Para editar clique [aqui](http://dontpad.com/informacaoAulasBCC021)"
+        context.bot.sendMessage(chat_id = chatId, text = mensagem, parse_mode = "MarkdownV2")
+
+
 def addProvas(update, context):
     messageId = update.message.message_id
     chatId = update.message.chat_id
-    print(chatId)
     mensagem = dontpad.read("provasBCC021")
     context.bot.sendMessage(chat_id = chatId, text = mensagem, reply_to_message_id = messageId)
 
     if chatId == int(CHAT):
         mensagem = "Para editar clique [aqui](http://dontpad.com/provasBCC021)"
         context.bot.sendMessage(chat_id = chatId, text = mensagem, parse_mode = "MarkdownV2")
+
 
 def addTrabalhos(update, context):
     messageId = update.message.message_id
@@ -40,6 +52,7 @@ def addTrabalhos(update, context):
     if chatId == int(CHAT):
         mensagem = "Para editar clique [aqui](http://dontpad.com/trabalhosBCC021)"
         context.bot.sendMessage(chat_id = chatId, text = mensagem, parse_mode = "MarkdownV2")
+
 
 def addExercicios(update, context):
     messageId = update.message.message_id
@@ -52,6 +65,7 @@ def addExercicios(update, context):
         context.bot.sendMessage(chat_id = chatId, text = mensagem, parse_mode = "MarkdownV2")
 
 
+
 def main():
     logger = logging.getLogger(__name__)
     logging.basicConfig(
@@ -62,6 +76,7 @@ def main():
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("info", informacao))
+    dp.add_handler(CommandHandler("aulas", informacaoAulas))
     dp.add_handler(CommandHandler("provas", addProvas))
     dp.add_handler(CommandHandler("trabalhos", addTrabalhos))
     dp.add_handler(CommandHandler("runcodes", addExercicios))
