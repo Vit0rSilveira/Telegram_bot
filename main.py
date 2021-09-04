@@ -11,8 +11,6 @@ load_dotenv('ignore/.env')
 TOKEN = os.getenv("TOKEN_BOT")
 CHAT = os.getenv("CHAT_ID")
 
-guardarDia = 0
-quandoMandar = 0
 
 def informacao(update, context):
     s = """Digite /provas para ver as datas das provas.
